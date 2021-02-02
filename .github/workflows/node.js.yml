@@ -7,10 +7,10 @@ on:
         branches:
             - master
     schedule:
-        - cron: '50 * * * *'
+        - cron: '0,10,20,30 * * * *'
 jobs:
     build:
-        runs-on: Ubuntu 18.04
+        runs-on: ubuntu-18.04
  
         steps:
             - name: Checkout codes
