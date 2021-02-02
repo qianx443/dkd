@@ -21,9 +21,12 @@ const $ = new Env('多看点');
 //let dkdtxurl = $.getdata('dkdtxurl')
 //let dkdtxhd = $.getdata('dkdtxhd')
 //let dkdtxbody = $.getdata('dkdtxbody')
-let dkdurl ='http://dkd-api.dysdk.com/user/index'
-let dkdhd = '{"headerInfo":"eyJvcXXXXXXXwOWMyOTdkMjU1ZDZkYmM5YmIwZTkzN2I0ZWFXXXXX5kdW9rYW5kaWFuIiwiY2hhbm5lbCI6IkhVQVdFSSIsImRldmljZV90eXBlIjoiMSIsInV0ZF9pZCI6IjIzOTM2Q0E3MDUzQzNFMjYyNzc0RTg4RDk2RkQ5MDkwIiwicmVzb2x1dGlvbiI6IjEwODAqMjM0MCIsInN5c3RlbV9tb2RlbCI6IlRBUy1BTjAwIiwibm90QWNIZWlnaHQiOiI4MSIsIm1hYyI6IkMyOjU4Ojc4OjA3OjNBOjZGIiwidG9rZW4iOiJjYzE0NDAyZTEzYmU1ZGExZjVhODlkNTQyMDVjMjg0NSIsIm5ldHdvcmsiOiIxIiwiYm9vdF90aW1lIjoiMTI2MDg1Njk4MiIsImFwcG5hbWUiOiLlpJrnnIvngrnop4bpopEiLCJzaW0iOiIxIiwic3lzdGVtX3ZlcnNpb24iOiIxMCIsImluc3RhbGx0aW1lIjoiMTYxMjIzNDA5OTEwMSIsInZlcnNpb25jb2RlIjozNywiZGtkX3ZlcnNpb24iOiIzLjEuMCIsInhwb3NlZCI6Ii0xIiwiZGV2aWNlX2lkcyI6eyI1IjoiNDlhNDNjMDVhMTMxOGMxYzciLCI2IjoiMDU1NmQ2OWVhOTMxOGFhYyIsIjciOiJhZjRmYmZmYi1iZWZjLTAyMmMtNzdiZi1mZjc1YjQ5YjZiMjgifX0=","Content-Type":"application/x-www-form-urlencoded"}'
-let dkdbody = 'token=cc14402e1XXXXXXXXXXXXXX'
+
+const dkdurl = process.env.dkdurl;
+const dkdhd = process.env.dkdhd;
+const dkdbody = process.env.dkdbody;
+const sckey = process.env.sckey;
+
 let dkdtxurl = $.getdata('dkdtxurl')
 let dkdtxhd = $.getdata('dkdtxhd')
 let dkdtxbody = $.getdata('dkdtxbody')
@@ -280,7 +283,41 @@ if(result.status_code == 10020){
   })
 }
  
+function server(msg) {
 
+    return new Promise(async (resolve) => {
+
+        try {
+
+  let url = `https://sc.ftqq.com/${sckey}.send`
+
+  let res = await axios.post(url, `text=多看点(づ ●─● )づ${msg}&desp=${msg}`)
+
+  if (res.data.errmsg == 'success') {
+
+    console.log('server酱:发送成功')
+
+  } else {
+
+    console.log('server酱:发送失败')
+
+    console.log(res.data)
+
+  }
+
+ 
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+        resolve();
+
+    });
+
+}
 
 //多看点签到
 function dkdqd(timeout = 0) {
@@ -335,8 +372,10 @@ let url = {
            //$.log(dkdbody)
     const result = JSON.parse(data)
         if(result.status_code == 200){
-       $.msg($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
-}
+        $.msg($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
+        await server($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
+
+        }
 if(result.status_code == 10020){
         $.msg($.name,"",'运行完毕，用户信息获取失败🚫 '+result.message)}
         } catch (e) {
