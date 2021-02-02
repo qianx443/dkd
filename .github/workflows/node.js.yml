@@ -1,30 +1,36 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+#参照ruicky/jd_sign_bot
 
-name: Node.js CI
-
+name: Github v2ex-auto-sign
+ 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    push:
+        branches:
+            - master
+    schedule:
+        - cron: '30 * * * *'
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    build:
+        runs-on: ubuntu-latest
+ 
+        steps:
+            - name: Checkout codes
+              uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                node-version: '12.x'
+            - name: Run
+              run: npm install
+            - run: node dkd.js
+              env:
+                dkdurl: ${{ secrets.dkdurl }}
+                dkdbody: ${{ secrets.dkdbody }}
+                sckey: ${{ secrets.sckey }}
+                dkdhd: ${{ secrets.dkdhd }}
+            - name: Upload to this repo
+              run: |
+                git config --global user.name "多看点通知"
+                git config --global user.email "wenmossux@gmail.com" 
+                git add . 
+                git commit -m '运行结果'  
+                git push -u origin master
