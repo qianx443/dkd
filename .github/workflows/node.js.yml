@@ -27,10 +27,3 @@ jobs:
                 dkdbody: ${{ secrets.dkdbody }}
                 sckey: ${{ secrets.sckey }}
                 dkdhd: ${{ secrets.dkdhd }}
-            - name: Upload to this repo
-              run: |
-                git config --global user.name "多看点通知"
-                git config --global user.email "wenmossux@gmail.com" 
-                git add . 
-                git commit -m '运行结果'  
-                git push -u origin master
