@@ -1,7 +1,6 @@
 #参照ruicky/jd_sign_bot
 
 name: Github dkd-auto-coin
- 
 on:
     push:
         branches:
@@ -21,7 +20,7 @@ jobs:
                 node-version: '12.x'
             - name: Run
               run: npm install
-            - run: node node.js
+            - run: node dkd.js
               env:
                 dkdurl: ${{ secrets.dkdurl }}
                 dkdbody: ${{ secrets.dkdbody }}
