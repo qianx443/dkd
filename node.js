@@ -7,37 +7,12 @@
 自动抽奖
 能力有限，自动刷小视频暂时无法完成
 本脚本以学习为主！
-首次运行脚本，会提示获取Cookie，
-点击我的获取Cookie！
+建议通过HttpCanary抓取Cookie，搜索页面地址http://dkd-api.dysdk.com/user/index
 2021.02.01 加入自动提现功能
 获取方式，进入提现页面，选择需要自动提现的面额点击提现获取
 
 多看点自动任务
-圈X配置如下，其他软件自行测试
-[task_local]
-#多看点
-10 * * * * https://raw.githubusercontent.com/age174/-/main/dkd.js, tag=多看点, img-url=https://raw.githubusercontent.com/shoujiqiyuan/PokemonGOforQuanX/master/IconSet/X003.png, enabled=true
 
-[rewrite_local]
-#获取多看点Cookie
-^http:\/\/dkd-api\.dysdk\.com\/user\/index url script-request-body https://raw.githubusercontent.com/age174/-/main/dkd.js
-
-#获取多看点提现Cookie
-^http:\/\/dkd-api\.dysdk\.com\/money\/withdraw_do? url script-request-body https://raw.githubusercontent.com/age174/-/main/dkd.js
-
-#loon
-^http:\/\/dkd-api\.dysdk\.com\/user\/index script-path=https://raw.githubusercontent.com/age174/-/main/dkd.js, requires-body=true, timeout=10, tag=多看点任务cookie
-
-#获取多看点提现Cookie
-^http:\/\/dkd-api\.dysdk\.com\/money\/withdraw_do? script-path=https://raw.githubusercontent.com/age174/-/main/dkd.js, requires-body=true, timeout=10, tag=多看点提现cookie
-#surge
-
-多看点任务cookie = type=http-request,pattern=^http:\/\/dkd-api\.dysdk\.com\/user\/index,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/dkd.js,script-update-interval=0
-
-#获取多看点提现Cookie
-多看点提现cookie = type=http-request,pattern=^http:\/\/dkd-api\.dysdk\.com\/money\/withdraw_do?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/dkd.js,script-update-interval=0
-[MITM]
-hostname = dkd-api.dysdk.com
 */
 const $ = new Env('多看点');
 //let dkdurl = $.getdata('dkdurl')
