@@ -1,6 +1,6 @@
 #参照ruicky/jd_sign_bot
 
-name: Github v2ex-auto-sign
+name: Github dkd-auto-coin
  
 on:
     push:
