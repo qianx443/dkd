@@ -12,7 +12,7 @@
 获取方式，进入提现页面，选择需要自动提现的面额点击提现获取
 多看点自动任务
 */
-const axios = require("axios");
+const axios = require('axios');
 const exec = require('child_process').execSync
 const fs = require('fs')
 const $ = new Env('多看点');
