@@ -18,7 +18,7 @@ jobs:
                 node-version: '12.x'
             - name: Run
               run: npm install -g got
-            - run: node dkd.js
+            - run: node dkd_coin.js
               env:
                 dkdurl: ${{ secrets.dkdurl }}
                 dkdbody: ${{ secrets.dkdbody }}
