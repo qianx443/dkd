@@ -12,7 +12,7 @@
 获取方式，进入提现页面，选择需要自动提现的面额点击提现获取
 多看点自动任务
 */
-const axios = require('axios');
+//const axios = require('axios');
 const exec = require('child_process').execSync
 const fs = require('fs')
 const $ = new Env('多看点');
@@ -292,7 +292,7 @@ function server(msg) {
 
   let url = `https://sc.ftqq.com/${sckey}.send`
 
-  let res = await axios.post(url, `text=多看点(づ ●─● )づ${msg}&desp=${msg}`)
+  let res = $.post(url, `text=多看点(づ ●─● )づ${msg}&desp=${msg}`)
 
   if (res.data.errmsg == 'success') {
 
@@ -374,7 +374,7 @@ let url = {
     const result = JSON.parse(data)
         if(result.status_code == 200){
         $.msg($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
-        await server($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
+       // await server($.name+'运行完毕！',"",'用户信息回执:成功🌝\n'+'用户名: '+result.data.nickname+'\n当前余额:'+result.data.cash+'\n总金币:'+result.data.gold+'\n今日金币:'+result.data.today_gold)
 
         }
 if(result.status_code == 10020){
