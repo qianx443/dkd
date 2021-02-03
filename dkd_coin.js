@@ -14,6 +14,9 @@
 */
 const exec = require('child_process').execSync
 const fs = require('fs')
+const got = require('got')
+const path = require('path') 
+const cktouch = require('tough-cookie')
 const $ = new Env('多看点');
 //let dkdurl = $.getdata('dkdurl')
 //let dkdhd = dkdhd
