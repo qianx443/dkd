@@ -2,7 +2,7 @@
   "name": "dkd-auto-coin",
   "version": "1.0.0",
   "description": "多看点自动刷金币",
-  "main": "dkd.js",
+  "main": "dkd_coin.js",
   "license": "UNLICENSED",
   "author": {
     "name": "qianx443"
@@ -17,7 +17,6 @@
   },
   "homepage": "",
   "dependencies": {
-    dependencies": {
     "crypto-js": "^4.0.0",
     "download": "^8.0.0",
     "got": "^11.5.1",
