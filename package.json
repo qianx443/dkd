@@ -1,0 +1,29 @@
+{
+  "name": "dkd-auto-coin",
+  "version": "1.0.0",
+  "description": "多看点自动刷金币",
+  "main": "dkd.js",
+  "license": "UNLICENSED",
+  "author": {
+    "name": "qianx443"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "updates": "",
+  "contributes": {
+    "search": null
+  },
+  "homepage": "",
+  "dependencies": {
+    dependencies": {
+    "crypto-js": "^4.0.0",
+    "download": "^8.0.0",
+    "got": "^11.5.1",
+    "http-server": "^0.12.3",
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
+    "tough-cookie": "^4.0.0"
+  }
+}
