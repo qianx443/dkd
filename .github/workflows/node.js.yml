@@ -1,6 +1,6 @@
 #参照ruicky/jd_sign_bot
 
-name: Github dkd-auto-coin
+name: 多看点自动刷金币
 on:
     push:
         branches:
