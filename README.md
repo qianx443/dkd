@@ -55,3 +55,4 @@ fork完之后,如图点击<font color="red">Settings</font>
  - 可以自己改定时时间
  - 还没想到
  - 不介意的话请输入作者邀请码13209301得500金币
+ - 如果没有自动触发workflow，请先确认是否已经enable workflow，然后任意修改下readme.md文件并commit changes
