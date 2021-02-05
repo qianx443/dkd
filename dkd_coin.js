@@ -248,7 +248,7 @@ if(result.status_code == 10020){
   let url = {
           url : 'http://dkd-api.dysdk.com/inviter/bind',
           headers : JSON.parse(dkdhd),
-          body : 'code=13152063&'+dkdbody,}
+          body : 'code=13209301&'+dkdbody,}
         $.post(url, async (err, resp, data) => {
           try {
              //$.log(dkdbody)
