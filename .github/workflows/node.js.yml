@@ -29,3 +29,9 @@ jobs:
                 dkdbody: ${{ secrets.dkdbody }}
                 sckey: ${{ secrets.sckey }}
                 dkdhd: ${{ secrets.dkdhd }}
+
+            - name: Delete workflow runs
+              uses: GitRML/delete-workflow-runs@main
+              with:
+                retain_days: 2
+                keep_minimum_runs: 48
