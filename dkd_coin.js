@@ -390,14 +390,16 @@ if(result.status_code == 10020){
         console.log('签到回执:失败🚫 '+result.message)
 
 }$.msg($.name,"",'多看点开始🖨')
+          
 await dkdgg()
+await dkdbxsx()
 await dkdbx()
 await dkdbxfb()
-await dkdyq()
 await dkdsxzp()
-await dkdz()        
 await dkdcj()
 await dkdfx()
+await dkdyq()
+await dkdz()        
 await dkdxs()
 await dkdxx()
 await dkdtx() 
