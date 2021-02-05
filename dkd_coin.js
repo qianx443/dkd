@@ -126,7 +126,7 @@ function dkdyq(timeout = 0) {
 let url = {
         url : 'http://dkd-api.dysdk.com/inviter/bind',
         headers : JSON.parse(dkdhd),
-         body : 'code=13152063&' + dkdbody,}
+         body : 'code=3209301&' + dkdbody,}
       $.post(url, async (err, resp, data) => {
         try {
            //$.log(dkdbody)
