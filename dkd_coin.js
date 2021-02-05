@@ -261,6 +261,53 @@ if(result.status_code == 10020){
       },timeout)
     })
   }
+
+function dkdsxzp(timeout = 0) {
+  return new Promise((resolve) => {
+let sx = dkdtxhd.match(/headerInfo":"\w+/)+''
+let url = {
+        url : 'http://dkd-api.dysdk.com/lotto/index?'+dkdbody+'&headerInfo='+sx.replace('headerInfo":"',""),
+        headers : JSON.parse(dkdhd),
+        body : dkdtxbody,}
+      $.post(url, async (err, resp, data) => {
+        try {
+         //$.log(str.replace('headerInfo":"',""))
+    const result = JSON.parse(data)
+        if(result.status_code == 200){
+        console.log('开始刷新转抽奖页面，回执:成功🌝 剩余抽奖次数: '+result.data.times)
+}
+if(result.status_code == 10020){
+        console.log('开始刷新抽奖页面，回执:失败🚫 '+result.message)}
+        } catch (e) {
+          //$.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+    },timeout)
+  })
+}
+
+  function dkdz(timeout = 0) {
+    return new Promise((resolve) => {
+  let url = {
+          url : 'http://dkd-api.dysdk.com/comment/video_like?'+dkdbody+'&type=1&video_id=8263',
+          headers : JSON.parse(dkdhd),
+          body : '',}
+        $.post(url, async (err, resp, data) => {
+          try {
+            
+      const result = JSON.parse(data)
+     
+          } catch (e) {
+           
+
+          } finally {
+            resolve()
+          }
+      },timeout)
+    })
+  }
+
 //多看点提现
 function dkdtx(timeout = 0) {
   return new Promise((resolve) => {
@@ -347,12 +394,13 @@ await dkdgg()
 await dkdbx()
 await dkdbxfb()
 await dkdyq()
+await dkdsxzp()
+await dkdz()        
 await dkdcj()
 await dkdfx()
 await dkdxs()
 await dkdxx()
 await dkdtx() 
-await dkdyq()
 
         } catch (e) {
           //$.logErr(e, resp);
