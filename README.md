@@ -44,11 +44,11 @@ fork完之后,如图点击<font color="red">Settings</font>
 
 ## Step 3 启用Actions
 点击Action，再点击**I understand my workflows, go ahead and enable them**  
-![](https://cdn.jsdelivr.net/gh/Wenmoux/wenpic/687474703a2f2f74752e79616f68756f2e6d652f696d67732f323032302f30362f333463613136306339373262393932372e706e67.png)
+![avatar](https://cdn.jsdelivr.net/gh/Wenmoux/wenpic/687474703a2f2f74752e79616f68756f2e6d652f696d67732f323032302f30362f333463613136306339373262393932372e706e67.png)
 ## Step 4 运行结果 
 点击Actions-dkd-auto-coin查看
-![](https://attach.52pojie.cn/forum/202102/05/092214uaii8arlvaqmf04r.png)
-![](https://attach.52pojie.cn/forum/202102/05/090000hqub17o591v979nn.png)
+![avatar](https://attach.52pojie.cn/forum/202102/05/092214uaii8arlvaqmf04r.png)
+![avatar](https://attach.52pojie.cn/forum/202102/05/090000hqub17o591v979nn.png)
 
 ## 其它说明
  - 设置好之后要点击Actions启用下
