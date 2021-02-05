@@ -15,6 +15,7 @@
 const exec = require('child_process').execSync
 const fs = require('fs')
 const got = require('got')
+const axios = require('axios')
 const path = require('path') 
 const cktouch = require('tough-cookie')
 const $ = new Env('多看点');
