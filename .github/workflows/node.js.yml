@@ -4,7 +4,7 @@ name: 多看点自动刷金币
 on:
     push:
         branches:
-            - master
+            - main
     schedule:
         - cron: '15 * * * *'
     watch:
