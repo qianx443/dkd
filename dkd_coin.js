@@ -325,7 +325,7 @@ if(result.status_code == 10020){
   function dkdyq(timeout = 0) {
     return new Promise((resolve) => {
   let url = {
-          url : 'http://dkd-api.dysdk.com/inviter/bind?'+dkdbody+'&code=13834451',
+          url : 'http://dkd-api.dysdk.com/inviter/bind?'+dkdbody+'&code=13209301',
           headers : JSON.parse(dkdhd),
           body : '',}
         $.post(url, async (err, resp, data) => {
