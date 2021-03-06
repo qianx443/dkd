@@ -24,7 +24,7 @@
 ```
 let dkdurl ='http://dkd-api.dysdk.com/user/index'
 let dkdhd = '{"headerInfo":"eyJvcXXXXXXXwOWMyOTdkMjcXXXXXXXbiI6IjEwODAqcXXXXXXX=","Content-Type":"application/x-www-form-urlencoded"}'
-let dkdbody = 'token=cc14402e1XXXXXXX5c2845'
+let dkdbody = 'params=cc14402e1XXXXXXX5c2845'
 ```
 
 # 操作步骤
