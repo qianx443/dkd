@@ -1,6 +1,6 @@
 /*
 软件名称:番茄看看 微信扫描二维码打开
-更新时间：2021-03-05 @肥皂
+感谢 @肥皂 大佬
 脚本说明：番茄看看自动阅读
 脚本为自动完成番茄看看的阅读任务
 每日收益2.7元左右，可多号撸。提现秒到
@@ -15,10 +15,8 @@
 去番茄看看，点击阅读A任务，开始阅读，
 完成一次阅读即可获取数据。
 
-TG电报群: https://t.me/hahaha8028
 
-我的邀请码 : 3950781  感谢大佬们填写
-
+我的邀请码 :   感谢大佬们填写
 
 注意:如果重定向跳转失败或者跑脚本没有key没有提交成功，请手动去做一个阅读A任务再执行脚本。
 
@@ -28,42 +26,6 @@ TG电报群: https://t.me/hahaha8028
 2.27修复番茄看看因跟换域名无法获取数据的问题，自行更换重写和mitm
 3.2增加剩余阅读次数查询
 3.5番茄看看更新，优化为不指定账号抓包方便羊毛党等多账号；以前抓到的数据可以迁移一次，通过boxjs设置跑一次脚本就可以 ，现在番茄看看可以并发执行了，简而言之就是多账号不需要一个账号跑完再去跑下一个账号，而是多个账号同时跑任务了，需要并发几个账号就去boxjs修改数值就可以了
-
-感谢@ztxtop大佬pr
-
-boxjs地址 :  
-
-https://raw.githubusercontent.com/age174/-/main/feizao.box.json
-
-
-番茄看看
-圈X配置如下，其他软件自行测试
-[task_local]
-#番茄看看
-15 12,14,16,20 * * * https://raw.githubusercontent.com/age174/-/main/fqkk.js, tag=番茄看看, img-url=https://ftp.bmp.ovh/imgs/2021/02/f8306006536eb49c.jpeg, enabled=true
-
-
-[rewrite_local]
-#番茄看看
-^http://m.*./reada/getTask url script-request-header https://raw.githubusercontent.com/age174/-/main/fqkk.js
-
-
-
-#loon
-^http://m.*./reada/getTask script-path=https://raw.githubusercontent.com/age174/-/main/fqkk.js, requires-header=true, timeout=10, tag=番茄看看
-
-
-
-#surge
-
-番茄看看 = type=http-request,pattern=^http://m.*./reada/getTask,requires-header=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/fqkk.js,script-update-interval=0
-
-
-
-
-[MITM]
-hostname = m.*
-
 
 */
 
