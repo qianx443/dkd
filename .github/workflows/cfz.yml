@@ -1,0 +1,28 @@
+#参照ruicky/jd_sign_bot
+
+name: Github cfz
+on:
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: '0 6 * * *'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+ 
+        steps:
+            - name: Checkout codes
+              uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                node-version: '12.x'
+            - name: Run
+              run: npm install
+            - run: node cfz.js
+              env:
+                cfzurl: ${{ secrets.cfzurl }}
+                cfzhd: ${{ secrets.cfzhd }}
+                sckey: ${{ secrets.sckey }}
+                cfzsbhd: ${{ secrets.cfzsbhd }}
