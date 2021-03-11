@@ -11,6 +11,12 @@
 
 
 const $ = new Env('春风转');
+const exec = require('child_process').execSync
+const fs = require('fs')
+const got = require('got')
+const axios = require('axios')
+const path = require('path') 
+const cktouch = require('tough-cookie')
 let status;
 status = (status = ($.getval("cfzstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const cfzurlArr = [], cfzhdArr = [],cfzsbhdArr = [],cfzcount = ''
@@ -18,9 +24,7 @@ const cfzurl = process.env.cfzurl;
 const cfzhd = process.env.cfzhd;
 const cfzsbhd = process.env.cfzsbhd;
 
-let cfzurl = $.getdata('cfzurl')
-let cfzhd = $.getdata('cfzhd')
-let cfzsbhd = $.getdata('cfzsbhd')
+
 //let cfzurl = 'http://cf-api.douzhuanapi.cn:10002/api/article/list?page=1&tag_id=0&slide=1&type=1&city_type=1'
 //let cfzhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2RjNDExYzA0IiwiaWF0IjoxNjE1NDI5MDYwLCJFwYQ=="}'
 //let cfzsbhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJJamdkeUlwaw=="}'
