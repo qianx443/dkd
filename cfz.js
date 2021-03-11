@@ -14,9 +14,16 @@ const $ = new Env('春风转');
 let status;
 status = (status = ($.getval("cfzstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 const cfzurlArr = [], cfzhdArr = [],cfzsbhdArr = [],cfzcount = ''
-let cfzurl = 'http://cf-api.douzhuanapi.cn:10002/api/article/list?page=1&tag_id=0&slide=1&type=1&city_type=1'
-let cfzhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2RjNDExYzA0IiwiaWF0IjoxNjE1NDI5MDYwLCJuYmYiOjE2MTU0MjkwNjAsImV4cCI6MTYxODAyMTA2MCwidWlkIjoxMjEyMzQzLCJuYW1lIjoiQmUgSHVtYmxlIiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMTA6MTc6NDAiLCJjaXR5X25hbWUiOiJcdTU0MDhcdTgwYTUiLCJjaXR5X2NvZGUiOiIzNDAxMDAifQ.74XhAZ6pKQGJ0SonQNqGnqf9kDE-j-WUPdMvpVSoB3A","phoneModel":" TAS-AN00","X-LAT":" 31.8672","osType":" android","REC-REQUEST-ID":" ","X-IMEI":" id120c83f7608c0832710","X-LNG":" 117.2774","Content-Type":" application/x-www-form-urlencoded","X-CCMS":" SXBJamdkeWFwYQ=="}'
-let cfzsbhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2RjNDExYzA0IiwiaWF0IjoxNjE1NDI5MDYwLCJuYmYiOjE2MTU0MjkwNjAsImV4cCI6MTYxODAyMTA2MCwidWlkIjoxMjEyMzQzLCJuYW1lIjoiQmUgSHVtYmxlIiwiY3JlYXRlZF9hdCI6IjIwMjEtMDMtMTEgMTA6MTc6NDAiLCJjaXR5X25hbWUiOiJcdTU0MDhcdTgwYTUiLCJjaXR5X2NvZGUiOiIzNDAxMDAifQ.74XhAZ6pKQGJ0SonQNqGnqf9kDE-j-WUPdMvpVSoB3A","phoneModel":" TAS-AN00","X-LAT":" 31.8672","User-Agent":" okhttp/4.3.1","osType":" android","REC-REQUEST-ID":" ","X-IMEI":" id120c83f7608c0832710","X-LNG":" 117.2774","Content-Type":" application/x-www-form-urlencoded","X-CCMS":" SXBJamdkeUlwaw=="}'
+const cfzurl = process.env.cfzurl;
+const cfzhd = process.env.cfzhd;
+const cfzsbhd = process.env.cfzsbhd;
+
+let cfzurl = $.getdata('cfzurl')
+let cfzhd = $.getdata('cfzhd')
+let cfzsbhd = $.getdata('cfzsbhd')
+//let cfzurl = 'http://cf-api.douzhuanapi.cn:10002/api/article/list?page=1&tag_id=0&slide=1&type=1&city_type=1'
+//let cfzhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2RjNDExYzA0IiwiaWF0IjoxNjE1NDI5MDYwLCJFwYQ=="}'
+//let cfzsbhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJJamdkeUlwaw=="}'
 let cfzlb = '',cfzid = '',cfzmc = '',page = 1
 !(async () => {
  
