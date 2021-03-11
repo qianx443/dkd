@@ -18,13 +18,13 @@
 
 
 # 获取cookie
-安装春风转刷金币，脚本为自动阅读新闻，每30秒可以获取60个金币，但是似乎存在每天三元上限，且薅且珍惜？
-下载地址 https://ss.tblk.me/R1MuJ
-使用HttpCanary等抓包工具，打开软件后，点击文章赚钱，下拉刷新一下，获得阅读数据，随便进入一篇文章阅读，获得金币奖励后提示获得上报数据
-搜索article/list，页面中抓取header信息,将格式转换为json数据填入cfzhd，url填入cfzurl
-搜索ad_sense/report，页面中抓取header信息,将格式转换为json数据填入fzsbhd
+ -安装春风转刷金币，脚本为自动阅读新闻，每30秒可以获取60个金币，但是似乎存在每天三元上限，且薅且珍惜？
+ -下载地址 https://ss.tblk.me/R1MuJ
+ -使用HttpCanary等抓包工具，打开软件后，点击文章赚钱，下拉刷新一下，获得阅读数据，随便进入一篇文章阅读，获得金币奖励后提示获得上报数据
+ -搜索article/list，页面中抓取header信息,将格式转换为json数据填入cfzhd，url填入cfzurl
+ -搜索ad_sense/report，页面中抓取header信息,将格式转换为json数据填入fzsbhd
 
-示例参数：
+ -示例参数：
 
 ```
 let cfzurl = 'http://cf-api.douzhuanapi.cn:10002/api/article/list?page=1&tag_id=0&slide=1&type=1&city_type=1'
