@@ -33,7 +33,6 @@ const cfzsbhd = process.env.cfzsbhd;
 //let cfzhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MDQ5N2RjNDExYzA0IiwiaWF0IjoxNjE1NDI5MDYwLCJFwYQ=="}'
 //let cfzsbhd = '{"X-V":" 1","Authorization":" Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJJamdkeUlwaw=="}'
 let cfzlb = '',cfzid = '',cfzmc = '',page = 1
-,page = 1
 let tc = 0
 
 !(async () => {
