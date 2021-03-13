@@ -47,25 +47,26 @@ let tc = 0
   .finally(() => $.done())
 
 
+
 function execTask() {
   return new Promise(async resolve => {
     try {
-await $.wait(1000)
-      for (let i = 0; i < 10; i++) {
-   
-        $.log(`春风转开始执行循环阅读，本次共执行10次，已执行${i+1}次`)
-        await cfzqd()
-        await $.wait(60000)
-      }
-await cfzrw1() 
-await $.wait(1000)
-await cfzrw2()
-await $.wait(1000)
-await cfzrw3()
-await $.wait(1000)
-await cfzrw4()
-await $.wait(1000)
-await cfzsdid()
+		await $.wait(1000)
+		for (let i = 0; i < 10; i++) {   
+			$.log(`春风转开始执行循环阅读，本次共执行10次，已执行${i+1}次`)
+			await cfzqd()
+			let sjs = 60000+Math.floor(Math.random()*10000); //随机等待60秒到70秒
+			await $.wait(sjs)
+		  }
+		await cfzrw1() 
+		await $.wait(1000)
+		await cfzrw2()
+		await $.wait(1000)
+		await cfzrw3()
+		await $.wait(1000)
+		await cfzrw4()
+		await $.wait(1000)
+		await cfzsdid()
     } catch (e) {
       $.logErr(` 循环执行任务出现异常: ${e}`)
     } finally {
@@ -82,7 +83,7 @@ function cfzck() {
     $.log(cfzurl)
   const cfzhd = JSON.stringify($request.headers)
         if(cfzhd)    $.setdata(cfzhd,`cfzhd${status}`)
-$.log(cfzhd)
+   $.log(cfzhd)
    $.msg($.name,"",'春风转'+`${status}` +'阅读数据获取成功！')
   }
 }
@@ -100,27 +101,22 @@ let url = {
           if (err) {
             $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
           } else {
-    const result = JSON.parse(data)
+		const result = JSON.parse(data)
         if(result.code == 200){
-        console.log('\n春风转[领取阅读奖励]回执:成功🌝 \n获得奖励: '+result.data.amount+'金币，等待60秒继续领取')       
-           await cfzsb();
-           
-           
-} else {
- if(result.message == '您的自阅已超过次数'){
-       tc =1
-}
-if(result.message=='系统错误！'){
-console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'\n恭喜您，您的账号黑了，尝试上报数据修复，提示上报数据成功请关闭脚本等待一分钟再次运行试试')
-await cfzxf();
-}else{
-
-console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'脚本已停止运行')
-}
-
-
-}
-}
+           console.log('\n春风转[领取阅读奖励]回执:成功🌝 \n获得奖励: '+result.data.amount+'金币，等待60秒继续领取')       
+           await cfzsb();         
+    	} else {
+			 if(result.message == '您的自阅已超过次数'){
+				   tc =1
+			}
+			if(result.message=='系统错误！'){
+			console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'\n恭喜您，您的账号黑了，尝试上报数据修复，提示上报数据成功请关闭脚本等待一分钟再次运行试试')
+			await cfzxf();
+			}else{
+			console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'脚本已停止运行')
+			}
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -133,25 +129,23 @@ console.log('\n春风转[领取阅读奖励]回执:失败🌚'+result.message+'�
 //春风转上报数据
 function cfzsb( timeout = 0) {
   return new Promise((resolve) => {
-let url = {
+	let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/self_read_init?item_id='+ac.cfzid,
-        headers : JSON.parse(cfzhd),
-        
+        headers : JSON.parse(cfzhd),        
         }
       $.get(url, async (err, resp, data) => {
         try {
           if (err) {
             $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
           } else {
-    const result = JSON.parse(data)
+        const result = JSON.parse(data)
         if(result.code == 200){
         //console.log('\n春风转[数据上报]回执:成功🌝'+result.message)  
-await cfztj()
-} else {
-console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
-
-}
-}
+		await cfztj()
+		} else {
+		console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -164,7 +158,7 @@ console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 //春风转上报提交数据
 function cfztj(timeout = 0) {
   return new Promise((resolve) => {
-let url = {
+	let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
         headers : JSON.parse(cfzhd),
         body : 'ad_source=1&location=3&position=8&report_type=1',
@@ -173,16 +167,17 @@ let url = {
       $.post(url, async (err, resp, data) => {
         try {
           if (err) {
+			 console.log('\n春风转[提交数据]🌚'+data)
             $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
           } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[数据上报]回执:成功🌝'+result.data)  
-} else {
-console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
+			const result = JSON.parse(data)
+				if(result.code == 200){
+				console.log('\n春风转[数据上报]回执:成功🌝'+result.data)  
+				} else {
+				console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 
-}
-}
+				}
+			}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -196,25 +191,23 @@ console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 //春风转修复系统错误
 function cfzxf(timeout = 0) {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
-        headers : JSON.parse(cfzhd),
-        body : 'ad_source=1&location=3&position=8&report_type=1',
-        
-        }
-      $.post(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[数据上报]回执:成功🌝'+result.data)  
-} else {
-console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
-
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/ad_sense/report',
+				headers : JSON.parse(cfzhd),
+				body : 'ad_source=1&location=3&position=8&report_type=1',        
+				}
+			  $.post(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+				console.log('\n春风转[数据上报]回执:成功🌝'+result.data)  
+		} else {
+			console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -226,33 +219,30 @@ console.log('\n春风转[上报数据]回执:失败🌚'+result.message)
 //春风转列表
 function cfzqd(timeout = 0) {
   return new Promise((resolve) => {
-    setTimeout( ()=>{
-      
-page++
-let sjs = Math.floor(Math.random()*1000); //生成随机数
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page='+sjs+'&slide='+sjs+'&tag_id=0&type=1',
-        headers : JSON.parse(cfzhd),
-        
-}
-      $.get(url, async (err, resp, data) => {
-cfzlb = data.match(/"list":(.*)/)[1]
-cfzid = cfzlb.match(/"id":(\w+),/)[1]
-cfzmc = cfzlb.match(/"title":"(.+?)","/)[1]
-//console.log(cfzmc)
-//$.done()
-        try {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-     
-
-        console.log('\n春风转[阅读列表]回执:成功🌝  \n📄阅读ID:'+cfzid+'\n📑开始阅读:'+cfzmc)
-       await $.wait(1000);
-        await cfzyd();
-} else {
-console.log('春风转[阅读列表]回执:失败🚫 '+result.message)
-     
-}
+    setTimeout( ()=>{      
+		page++
+		let sjs = Math.floor(Math.random()*1000); //生成随机数
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page='+sjs+'&slide='+sjs+'&tag_id=0&type=1',
+				headers : JSON.parse(cfzhd),
+				
+		}
+		  $.get(url, async (err, resp, data) => {
+		   console.log('\n春风转[阅读列表]:'+data)
+			cfzlb = data.match(/"list":(.*)/)[1]
+			cfzid = cfzlb.match(/"id":(\w+),/)[1]
+			cfzmc = cfzlb.match(/"title":"(.+?)","/)[1]
+			//console.log(cfzmc)
+			//$.done()
+				try {
+				const result = JSON.parse(data)
+					if(result.code == 200){
+				 	console.log('\n春风转[阅读列表]回执:成功🌝  \n📄阅读ID:'+cfzid+'\n📑开始阅读:'+cfzmc)
+				    await $.wait(1000);
+					await cfzyd();
+			} else {
+				console.log('春风转[阅读列表]回执:失败🚫 '+result.message)				 
+			}
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
@@ -270,20 +260,20 @@ let url = {
         url : 'http://cf-api.douzhuanapi.cn:10002/api/get_red_task_gold?id=13',
         headers : JSON.parse(cfzhd),
         }
-      $.get(url, async (err, resp, data) => {
+		$.get(url, async (err, resp, data) => {
         try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[领取每日任务阅读新闻]回执:成功🌝 \n获得奖励: '+result.data.amount)                
-           
-} else {
-     
-console.log('\n春风转[领取每日任务阅读新闻]回执:失败🌚'+result.message)
-}
-}
+			if (err) {
+				$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+			  } else {
+			const result = JSON.parse(data)
+			if(result.code == 200){
+			console.log('\n春风转[领取每日任务阅读新闻]回执:成功🌝 \n获得奖励: '+result.data.amount)                
+			   
+			} else {
+				 
+			console.log('\n春风转[领取每日任务阅读新闻]回执:失败🌚'+result.message)
+			}
+			}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -295,25 +285,24 @@ console.log('\n春风转[领取每日任务阅读新闻]回执:失败🌚'+resul
 //春风转每日任务阅读60分钟
 function cfzrw2() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/get_red_task_gold?id=14',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[领取每日任务阅读60分钟]回执:成功🌝 \n获得奖励: '+result.data.amount)       
-           
-           
-} else {
-     
-console.log('\n春风转[领取每日任务阅读60分钟]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/get_red_task_gold?id=14',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+				const result = JSON.parse(data)
+					if(result.code == 200){
+					console.log('\n春风转[领取每日任务阅读60分钟]回执:成功🌝 \n获得奖励: '+result.data.amount)      
+					  
+				} else {
+					 
+				console.log('\n春风转[领取每日任务阅读60分钟]回执:失败🌚'+result.message)
+				}
+			}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -367,34 +356,34 @@ for (let i = 0; i < 3; i++) {
 //春风转每日任务晒图奖励
 function cfzrw4() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/get_red_task_gold?id=5',
-        headers : JSON.parse(cfzhd),
-        }
+	let url = {
+			url : 'http://cf-api.douzhuanapi.cn:10002/api/get_red_task_gold?id=5',
+			headers : JSON.parse(cfzhd),
+			}
       $.get(url, async (err, resp, data) => {
         try {
           if (err) {
             $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
           } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[领取每日任务晒图奖励]回执:成功🌝 \n获得奖励: '+result.data.amount)       
-           
-           
-} else {
-     
-if(result.message =='该任务您还未完成'){
-console.log('\n春风转[领取每日任务晒图奖励]回执:失败🌚'+result.message)
-for (let i = 0; i < 3; i++) {
-         
-        $.log(`春风转开始执行观看福利视频，本次共执行3次，已执行${i+1}次`)
-        await cfzrwst()
-await $.wait(10000)
-      }
-}else{console.log('\n春风转[领取每日任务晒图奖励]回执:失败🌚'+result.message)}
+		const result = JSON.parse(data)
+			if(result.code == 200){
+			console.log('\n春风转[领取每日任务晒图奖励]回执:成功🌝 \n获得奖励: '+result.data.amount)       
+			   
+			   
+		} else {
+			 
+		if(result.message =='该任务您还未完成'){
+		console.log('\n春风转[领取每日任务晒图奖励]回执:失败🌚'+result.message)
+		for (let i = 0; i < 3; i++) {
+				 
+				$.log(`春风转开始执行观看福利视频，本次共执行3次，已执行${i+1}次`)
+				await cfzrwst()
+		await $.wait(10000)
+			  }
+		}else{console.log('\n春风转[领取每日任务晒图奖励]回执:失败🌚'+result.message)}
 
-}
-}
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -408,25 +397,25 @@ await $.wait(10000)
 //春风转每日任务看视频
 function cfzrwsp() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/red_task_report?item_id=15&task_type=2',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[看广告视频]回执:成功🌝 \n'+result.data)       
-           
-           
-} else {
-     
-console.log('\n春风转[看广告视频]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/red_task_report?item_id=15&task_type=2',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+				console.log('\n春风转[看广告视频]回执:成功🌝 \n'+result.data)       
+				   
+				   
+		} else {
+			 
+		console.log('\n春风转[看广告视频]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -439,25 +428,25 @@ console.log('\n春风转[看广告视频]回执:失败🌚'+result.message)
 //春风转每日任务晒图
 function cfzrwst() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/red_task_report?item_id=5&task_type=5',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[晒图奖励]回执:成功🌝 \n'+result.data)       
-           
-           
-} else {
-     
-console.log('\n春风转[晒图奖励]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/red_task_report?item_id=5&task_type=5',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+				console.log('\n春风转[晒图奖励]回执:成功🌝 \n'+result.data)       
+				   
+				   
+		} else {
+			 
+		console.log('\n春风转[晒图奖励]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -470,26 +459,26 @@ console.log('\n春风转[晒图奖励]回执:失败🌚'+result.message)
 //春风转每时段id
 function cfzsdid() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_opt',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
- sdid = result.data.treasureBox_id
-        console.log('\n春风转[时段ID]回执:成功🌝 \n时段ID: '+sdid)       
-           await cfzsdlq();
-           
-} else {
-     
-console.log('\n春风转[时段ID]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_opt',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+		 sdid = result.data.treasureBox_id
+				console.log('\n春风转[时段ID]回执:成功🌝 \n时段ID: '+sdid)       
+				   await cfzsdlq();
+				   
+		} else {
+			 
+		console.log('\n春风转[时段ID]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -501,26 +490,26 @@ console.log('\n春风转[时段ID]回执:失败🌚'+result.message)
 //时段领取
 function cfzsdlq() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_gain?treasure_box_id='+sdid+'&type=1',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
- sdlqid = result.data.gold_gain_id
-        console.log('\n春风转[时段领取]回执:成功🌝 \n时段ID: '+result.data.gold_amount)       
-           await cfzsdfb();
-           
-} else {
-     
-console.log('\n春风转[时段领取]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_gain?treasure_box_id='+sdid+'&type=1',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+		 sdlqid = result.data.gold_gain_id
+				console.log('\n春风转[时段领取]回执:成功🌝 \n时段ID: '+result.data.gold_amount)       
+				   await cfzsdfb();
+				   
+		} else {
+			 
+		console.log('\n春风转[时段领取]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
@@ -532,24 +521,24 @@ console.log('\n春风转[时段领取]回执:失败🌚'+result.message)
 //时段翻倍领取
 function cfzsdfb() {
   return new Promise((resolve) => {
-let url = {
-        url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_gain?gold_gain_id='+sdlqid+'&treasure_box_id='+sdid+'&type=2',
-        headers : JSON.parse(cfzhd),
-        }
-      $.get(url, async (err, resp, data) => {
-        try {
-          if (err) {
-            $.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
-          } else {
-    const result = JSON.parse(data)
-        if(result.code == 200){
-        console.log('\n春风转[时段翻倍]回执:成功🌝 \n时段ID: '+result.data.gold_amount)       
-           
-} else {
-     
-console.log('\n春风转[时段翻倍]回执:失败🌚'+result.message)
-}
-}
+		let url = {
+				url : 'http://cf-api.douzhuanapi.cn:10002/api/treasure_box_gain?gold_gain_id='+sdlqid+'&treasure_box_id='+sdid+'&type=2',
+				headers : JSON.parse(cfzhd),
+				}
+			  $.get(url, async (err, resp, data) => {
+				try {
+				  if (err) {
+					$.logErr(`❌ 账号 API请求失败，请检查网络后重试\n url: ${url.url} \n data: ${JSON.stringify(err, null, 2)}`)
+				  } else {
+			const result = JSON.parse(data)
+				if(result.code == 200){
+				console.log('\n春风转[时段翻倍]回执:成功🌝 \n时段ID: '+result.data.gold_amount)       
+				   
+		} else {
+			 
+		console.log('\n春风转[时段翻倍]回执:失败🌚'+result.message)
+		}
+		}
         } catch (e) {
           $.logErr(`======== 账号 ========\nurl: ${url.url}\n${e}\ndata: ${resp && resp.body}`);
         } finally {
