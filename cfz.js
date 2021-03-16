@@ -222,7 +222,7 @@ function cfzqd(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{      
 		page++
-		let sjs = Math.floor(Math.random()*1000); //生成随机数
+		let sjs = Math.floor(Math.random()*100); //生成随机数
 		let url = {
 				url : 'http://cf-api.douzhuanapi.cn:10002/api/article/list?city_type=1&page='+sjs+'&slide='+sjs+'&tag_id=0&type=1',
 				headers : JSON.parse(cfzhd),
