@@ -36,7 +36,7 @@ let dkdbody = 'params=cc14402e1XXXXXXX5c2845'
 fork完之后,如图点击<font color="red">Settings</font>
 进去之后依次点击<font color="red">Secrets----new secret</font>
 点击之后
- - ame输入dkdurl, value输入你的dkdurl
+ - name输入dkdurl, value输入你的dkdurl
  - 完成后点击add secret 
  - Name输入dkdhd, value输入你的dkdhd，注意参考上文中示例，修改成json格式，仅需替换headerInfo内容
  - Name输入dkdbody, value输入你的dkdbody
